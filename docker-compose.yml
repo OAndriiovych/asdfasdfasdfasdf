@@ -1,0 +1,15 @@
+version: "3.6"
+
+services:
+  db:
+    image: postgres:12
+    networks:
+      - backend
+    ports:
+      - "5432:5432"
+    restart: on-failure
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "cdefense"]
+      interval: 30s
+      timeout: 3s
+
